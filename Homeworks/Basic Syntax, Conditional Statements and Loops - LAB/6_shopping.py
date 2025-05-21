@@ -2,7 +2,7 @@ budget = int(input())
 
 total_price = 0
 
-while budget > total_price:
+while budget >= total_price:
     command = input()
 
     if command == "End":
