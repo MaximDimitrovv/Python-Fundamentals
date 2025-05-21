@@ -1,5 +1,10 @@
-sequence = [1, 1, 1, 2, 2, 3, 1, 1, 1, 2, 3, 3, 5, 5]
-#
+numbers_to_add = int(input())
+sequence = []
+
+for _ in range(numbers_to_add):
+    numbers = int(input())
+    sequence.append(numbers)
+
 first_number = sequence[0]
 counter = 0
 index = 0
