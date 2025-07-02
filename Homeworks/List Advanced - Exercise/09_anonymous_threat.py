@@ -1,34 +1,46 @@
-string = input().split(" ")
+data = input().split()
 
-def merge(whole_command, string_list):
-    split = whole_command.split(" ")
-    start_index = int(split[1])
-    end_index = int(split[2]) + 1
+while True:
+    command = input()
+    if command == "3:1":
+        break
 
-    string_list[start_index:end_index] = ["".join(string_list[start_index:end_index])]
+    parts = command.split()
+    if parts[0] == "merge":
+        start = int(parts[1])
+        end = int(parts[2])
 
-    return string_list
+        if start < 0:
+            start = 0
+        if end >= len(data):
+            end = len(data) - 1
+
+        if start < end:
+            merged = ''.join(data[start:end + 1])
+            data[start:end + 1] = [merged]
+
+    elif parts[0] == "divide":
+        index = int(parts[1])
+        partitions = int(parts[2])
+
+        word = data[index]
+        length = len(word)
+        part_size = length // partitions
+        extra = length % partitions
+
+        new_parts = []
+        last_index = 0
+
+        for i in range(partitions):
+            add = part_size + (1 if i == partitions - 1 else 0 and extra > 0)
+            new_parts.append(word[last_index:last_index + part_size])
+            last_index += part_size
 
 
-def divide(whole_command, string_list):
-    split = whole_command.split(" ")
-    index = int(split[1])
-    parts = int(split[2])
+        if last_index < length:
+            new_parts[-1] += word[last_index:]
 
-    split_word = string_list[index]
-    letters_list = []
-    for i in range(len(split_word)):
-        if len(split_word) % 2 == 0:
+        data[index:index + 1] = new_parts
 
-
-    return letters_list
-
-print(divide("divide 0 2", string))
-# while True:
-#     command = input()
-#
-#     if command == "3:1":
-#         break
-#
-#     if "merge" in command:
+print(' '.join(data))
 
